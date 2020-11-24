@@ -1,0 +1,137 @@
+﻿<Window x:Class="XClock.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft .com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d1="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d d1"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        AllowsTransparency="True"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        Title="MainWindow" WindowStartupLocation="Manual" Background="Transparent" materialDesign:ShadowAssist.ShadowDepth="Depth4" Height="228" Width="674" Loaded="Window_Loaded" Left="600" Top="500">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#6ec6ff"/>
+        <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#0069c0"/>
+        <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#2196f3"/>
+
+
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <ContentPresenter RecognizesAccessKey="False"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.50"/>
+    </Window.Effect>
+
+    <Grid  Margin="0,10,10.333,10" ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Style="{DynamicResource MaterialDesignGroupBox}" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="2" Background="#00000000" Grid.ColumnSpan="2">
+            <GroupBox.Header>
+                <TextBlock x:Name="Text_Title" Text="XClock" Foreground="White" Margin="24,0,30,0" FontFamily="Microsoft JhengHei UI" FontWeight="Bold" >
+                    <TextBlock.ToolTip>
+                        <Button Content="Xcube Studio"/>
+                    </TextBlock.ToolTip>
+                </TextBlock>
+            </GroupBox.Header>
+        </GroupBox>
+        <Button Style="{DynamicResource MaterialDesignFlatMidBgButton}" ToolTip="Minimize" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="48" Height="25" Foreground="White" Click="Button_Mini" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="WindowMinimize" />
+        </Button>
+        <Grid x:Name="Main" Grid.ColumnSpan="2" Margin="0,10,0,0" >
+            <Image Source="alarm.png" Margin="6,-4,633,181"/>
+            <materialDesign:Card Margin="2,22,1,2" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:Card.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.207"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </materialDesign:Card.RenderTransform>
+                <materialDesign:Card.Background>
+                    <ImageBrush ImageSource="/back.jpg"></ImageBrush>
+                </materialDesign:Card.Background>
+                <StackPanel>
+                    <Label Content="XX:XX:XX" x:Name="TimeLable" FontFamily="Microsoft YaHei UI Light" Foreground="#FFFCFCFC" Margin="41,-12,10.333,30" FontSize="90"></Label>
+                    <Label Content="XXXX年XX月XX日" x:Name="DayLable" FontFamily="Microsoft YaHei UI Light" Foreground="#FFFCFCFC"  FontSize="25" Height="38" Margin="44,-19,413.333,0" RenderTransformOrigin="0.501,-0.75">
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                </StackPanel>
+
+            </materialDesign:Card>
+
+            <!-- <materialDesign:Card></materialDesign:Card> -->
+            <!--    <Image Source="99@2x.png" Height="41" Margin="295,-47,301,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.637"/>
+                                <TranslateTransform X="0.005" Y="-0.503"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="99@2x.png" Height="48" Margin="473,-47,115.333,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.637"/>
+                                <TranslateTransform X="0.005" Y="-0.503"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Label x:Name="high" Content="N/A" Margin="369,-37,10.333,0" Background="White" Foreground="White" Height="39" FontSize="22"></Label>
+                    <Label x:Name="low" Content="N/A" Margin="552,-37,10.333,0" Background="White" Foreground="White" Height="39" FontSize="22"></Label> !-->
+            <materialDesign:Card Margin="461,34,21,16" fw:AcrylicWindow.AcrylicWindowStyle="Normal" fw:AcrylicWindow.Enabled="True" fw:PointerTracker.Enabled="True" Background="#4C000000">
+
+                <StackPanel>
+                    <Label Content="Today 今日" Background="White" Foreground="White" Height="26" Margin="0,0,110,0" FontFamily="Microsoft YaHei UI Light" ></Label>
+                    <Image Source="0@2x.png" Height="41" Margin="15,0,121,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.637"/>
+                                <TranslateTransform X="0.005" Y="-0.503"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image Source="1@2x.png"  Height="41" Margin="117,-42,10,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.637"/>
+                                <TranslateTransform X="0.005" Y="-0.503"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Label x:Name="high" Content="N/A" Margin="15,-3,110,0" Background="White" Foreground="White" Height="40" FontSize="22"/>
+                    <Label x:Name="low" Content="N/A" Margin="119,-39,10,0" Background="White" Foreground="White" Height="39" FontSize="22"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>

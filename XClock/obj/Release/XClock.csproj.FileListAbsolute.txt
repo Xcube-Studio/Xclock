@@ -1,0 +1,16 @@
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.csprojAssemblyReference.cache
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\MainWindow.baml
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\MainWindow.g.cs
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\App.g.cs
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock_MarkupCompile.cache
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock_MarkupCompile.lref
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\App.baml
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.g.resources
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.Properties.Resources.resources
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.csproj.GenerateResource.cache
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.csproj.CoreCompileInputs.cache
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.exe
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.pdb
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.exe.config
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.exe
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.pdb
