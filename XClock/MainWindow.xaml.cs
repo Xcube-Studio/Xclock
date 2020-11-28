@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SourceChord.FluentWPF;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,8 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -19,6 +22,74 @@ namespace XClock
     
     public partial class MainWindow : Window
     {
+        public class Location1h
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public string id { get; set; }
+            /// <summary>
+            /// 丽水
+            /// </summary>
+            public string name { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string country { get; set; }
+            /// <summary>
+            /// 丽水,丽水,浙江,中国
+            /// </summary>
+            public string path { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string timezone { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string timezone_offset { get; set; }
+        }
+
+        public class Now
+        {
+            /// <summary>
+            /// 阴
+            /// </summary>
+            public string text { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string code { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string temperature { get; set; }
+        }
+
+        public class Results1h
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public Location location1h { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public Now now { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            public string last_update { get; set; }
+        }
+
+        public class Root2
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public List<Results> results1h { get; set; }
+        }
+
         public class Location
         {
             /// <summary>
@@ -177,6 +248,8 @@ namespace XClock
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
+            weathercardwindow.SetBinding(AcrylicPanel.TargetProperty, new Binding() { ElementName = "MainImage" });
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "timeopen.txt"))
             {
                 using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "timeopen.txt"))
@@ -242,7 +315,17 @@ namespace XClock
                     }
                 }
             }
-           
+            try
+            {
+                WebClient MyWebClient = new WebClient();
+                MyWebClient.Credentials = CredentialCache.DefaultCredentials;
+                Byte[] pageData = MyWebClient.DownloadData("https://api.seniverse.com/v3/weather/now.json?key=SsqE832RAq3z3EfAE&location=lishui&language=zh-Hans");
+                weather = Encoding.UTF8.GetString(pageData);
+
+            }
+            catch { };
+            Root2 rt2 = JsonConvert.DeserializeObject<Root2>(weather);
+
             BitmapImage ImageSource = new BitmapImage(new Uri("/" +weather_day + "@2x.png", UriKind.Relative));
             day.Source = ImageSource;
             BitmapImage ImageSource1 = new BitmapImage(new Uri("/" +weather_night + "@2x.png", UriKind.Relative));

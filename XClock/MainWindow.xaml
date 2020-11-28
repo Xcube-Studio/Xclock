@@ -104,33 +104,34 @@
                     </Image>
                     <Label x:Name="high" Content="N/A" Margin="369,-37,10.333,0" Background="White" Foreground="White" Height="39" FontSize="22"></Label>
                     <Label x:Name="low" Content="N/A" Margin="552,-37,10.333,0" Background="White" Foreground="White" Height="39" FontSize="22"></Label> !-->
-            <materialDesign:Card Margin="461,34,21,16" fw:AcrylicWindow.AcrylicWindowStyle="Normal" fw:AcrylicWindow.Enabled="True" fw:PointerTracker.Enabled="True" Background="#4C000000">
-
-                <StackPanel>
-                    <Label Content="Today 今日" Background="White" Foreground="White" Height="31" Margin="0,3,82,6" FontFamily="Microsoft YaHei UI Light" FontSize="18" ></Label>
-                    <Image Source="0@2x.png" Height="41" Margin="15,0,121,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.637"/>
-                                <TranslateTransform X="0.005" Y="-0.503"/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-                    <Image Source="1@2x.png"  Height="42" Margin="117,-42,10,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.637"/>
-                                <TranslateTransform X="0.005" Y="-0.503"/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-                    <Label x:Name="high" Content="N/A" Margin="15,-3,110,0" Background="White" Foreground="White" Height="40" FontSize="22"/>
-                    <Label x:Name="low" Content="N/A" Margin="119,-39,10,0" Background="White" Foreground="White" Height="39" FontSize="22"/>
-                </StackPanel>
+            <materialDesign:Card Margin="461,34,21,16" Background="#6B000000" x:Name="weathercard">
+                <fw:AcrylicPanel x:Name="weathercardwindow" NoiseOpacity="0.02">
+                    <StackPanel>
+                        <Label Content="Today 今日天气" Background="White" Foreground="White" Height="31" Margin="0,3,39,6" FontFamily="Microsoft YaHei UI Light" FontSize="18" ></Label>
+                        <Image Source="0@2x.png" Height="41" Margin="15,0,121,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-0.637"/>
+                                    <TranslateTransform X="0.005" Y="-0.503"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Image Source="1@2x.png"  Height="42" Margin="117,-42,10,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-0.637"/>
+                                    <TranslateTransform X="0.005" Y="-0.503"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label x:Name="high" Content="N/A" Margin="15,-3,110,0" Background="White" Foreground="White" Height="40" FontSize="22"/>
+                        <Label x:Name="low" Content="N/A" Margin="119,-39,10,0" Background="White" Foreground="White" Height="39" FontSize="22"/>
+                    </StackPanel>
+                </fw:AcrylicPanel>
             </materialDesign:Card>
         </Grid>
     </Grid>
