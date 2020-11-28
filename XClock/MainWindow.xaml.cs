@@ -16,6 +16,7 @@ namespace XClock
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
+    
     public partial class MainWindow : Window
     {
         public class Location
@@ -46,12 +47,12 @@ namespace XClock
             public string timezone_offset { get; set; }
         }
 
-        public class DailyItem
+        public class Daily
         {
             /// <summary>
             /// 
             /// </summary>
-            public string date { get; set; }
+            public DateTime date { get; set; }
             /// <summary>
             /// 小雨
             /// </summary>
@@ -104,10 +105,9 @@ namespace XClock
             /// 
             /// </summary>
             public string humidity { get; set; }
-
         }
 
-        public class ResultsItem
+        public class Results
         {
             /// <summary>
             /// 
@@ -116,7 +116,7 @@ namespace XClock
             /// <summary>
             /// 
             /// </summary>
-            public List<DailyItem> daily { get; set; }
+            public List<Daily> daily { get; set; }
             /// <summary>
             /// 
             /// </summary>
@@ -128,8 +128,9 @@ namespace XClock
             /// <summary>
             /// 
             /// </summary>
-            public List<ResultsItem> results { get; set; }
+            public List<Results> results { get; set; }
         }
+
         static int f1, f2, a = 0, b = 0,c=0;
         static string[] times = new string[10];
         static string[] timeclose = new string[10];
@@ -221,15 +222,12 @@ namespace XClock
             try
             {
                 WebClient MyWebClient = new WebClient();
+                MyWebClient.Credentials = CredentialCache.DefaultCredentials;
+                Byte[] pageData = MyWebClient.DownloadData("https://api.seniverse.com/v3/weather/daily.json?key=SsqE832RAq3z3EfAE&location=lishui&language=zh-Hans&unit=c&start=0&days=2"); 
+                weather = Encoding.UTF8.GetString(pageData);
 
-
-                MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
-
-                Byte[] pageData = MyWebClient.DownloadData("https://api.seniverse.com/v3/weather/daily.json?key=SsqE832RAq3z3EfAE&location=lishui&language=zh-Hans&unit=c&start=0&days=2"); //从指定网站下载数据
-
-                weather = Encoding.Default.GetString(pageData);
             }
-            catch { }
+            catch { };
             Root rt = JsonConvert.DeserializeObject<Root>(weather);
             for (int i = 0; i < rt.results.Count; i++)
             {
@@ -245,10 +243,10 @@ namespace XClock
                 }
             }
            
-            BitmapImage ImageSource = new BitmapImage(new Uri(weather_day + "@2x.png"));
+            BitmapImage ImageSource = new BitmapImage(new Uri("/" +weather_day + "@2x.png", UriKind.Relative));
             day.Source = ImageSource;
-            BitmapImage ImageSource1 = new BitmapImage(new Uri(weather_night + "@2x.png"));
-            night.Source = ImageSource;
+            BitmapImage ImageSource1 = new BitmapImage(new Uri("/" +weather_night + "@2x.png", UriKind.Relative));
+            night.Source = ImageSource1;
             high.Content = weather_high + "℃";
             low.Content = weather_low + "℃"; 
             DispatcherTimer timer = new DispatcherTimer();
