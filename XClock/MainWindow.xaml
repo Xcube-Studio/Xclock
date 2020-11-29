@@ -108,7 +108,7 @@
                 <fw:AcrylicPanel x:Name="weathercardwindow" NoiseOpacity="0.02">
                     <StackPanel>
                         <Label Content="Today 今日天气" Background="White" Foreground="White" Height="31" Margin="0,3,39,6" FontFamily="Microsoft YaHei UI Light" FontSize="18" ></Label>
-                        <Image Source="0@2x.png" Height="41" Margin="15,0,121,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
+                        <Image Source="1@2x.png" Height="41" Margin="5,0,106,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -118,7 +118,7 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Image Source="1@2x.png"  Height="42" Margin="117,-42,10,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
+                        <Image Source="1@2x.png"  Height="42" Margin="104,-42,10,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -129,7 +129,7 @@
                             </Image.RenderTransform>
                         </Image>
                         <Label x:Name="high" Content="N/A" Margin="15,-3,110,0" Background="White" Foreground="White" Height="40" FontSize="22"/>
-                        <Label x:Name="low" Content="N/A" Margin="119,-39,10,0" Background="White" Foreground="White" Height="39" FontSize="22"/>
+                        <Label x:Name="low" Content="N/A" Margin="108,-39,10,0" Background="White" Foreground="White" Height="39" FontSize="22"/>
                     </StackPanel>
                 </fw:AcrylicPanel>
             </materialDesign:Card>
