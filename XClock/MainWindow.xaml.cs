@@ -23,6 +23,7 @@ namespace XClock
 
     public partial class MainWindow : Window
     {
+        int buttom = 0;
         public class hweather{
             public class Location
             {
@@ -238,7 +239,8 @@ namespace XClock
         }
         private void Button_Mini(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
+            buttom++;
+            if (buttom == 3) WindowState = WindowState.Minimized;
             GC.Collect();
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -336,8 +338,8 @@ namespace XClock
                 }
             }
             var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
-            this.Left = desktopWorkingArea.Right - this.Width - 10;
-            this.Top = desktopWorkingArea.Bottom - this.Height - 10;
+            this.Left = desktopWorkingArea.Right - Width;
+            this.Top = 0;
             DayLable.Content = DateTime.Now.ToString("yyyy年MM月dd日");
             try
             {
