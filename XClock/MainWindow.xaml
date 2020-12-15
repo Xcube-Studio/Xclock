@@ -66,7 +66,7 @@
                     <ImageBrush ImageSource="/back.jpg"></ImageBrush>
                 </materialDesign:Card.Background>
                 <StackPanel>
-                    <Label Content="XX:XX:XX" x:Name="TimeLable" FontFamily="Microsoft YaHei UI Light" Foreground="#FFFCFCFC" Margin="41,-12,10.333,30" FontSize="90"></Label>
+                    <Label Content="XB:B2:XX" x:Name="TimeLable" FontFamily="Microsoft YaHei UI Light" Foreground="#FFFCFCFC" Margin="41,-12,231,30" FontSize="85"></Label>
                     <Label Content="XXXX年XX月XX日" x:Name="DayLable" FontFamily="Microsoft YaHei UI Light" Foreground="#FFFCFCFC"  FontSize="25" Height="38" Margin="44,-19,413.333,0" RenderTransformOrigin="0.501,-0.75">
                         <Label.RenderTransform>
                             <TransformGroup>
@@ -81,34 +81,12 @@
 
             </materialDesign:Card>
 
-            <!-- <materialDesign:Card></materialDesign:Card> -->
-            <!--    <Image Source="99@2x.png" Height="41" Margin="295,-47,301,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.637"/>
-                                <TranslateTransform X="0.005" Y="-0.503"/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-                    <Image Source="99@2x.png" Height="48" Margin="473,-47,115.333,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.637"/>
-                                <TranslateTransform X="0.005" Y="-0.503"/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-                    <Label x:Name="high" Content="N/A" Margin="369,-37,10.333,0" Background="White" Foreground="White" Height="39" FontSize="22"></Label>
-                    <Label x:Name="low" Content="N/A" Margin="552,-37,10.333,0" Background="White" Foreground="White" Height="39" FontSize="22"></Label> !-->
-            <materialDesign:Card Margin="461,34,21,16" Background="#6B000000" x:Name="weathercard">
-                <fw:AcrylicPanel x:Name="weathercardwindow" NoiseOpacity="0.02">
+
+            <materialDesign:Card Margin="417,34,10,16" Background="#6B000000" x:Name="weathercard">
+                <fw:AcrylicPanel x:Name="weathercardwindow" NoiseOpacity="0.02" Margin="0">
                     <StackPanel>
-                        <Label Content="Today 今日天气" Background="White" Foreground="White" Height="31" Margin="0,3,39,6" FontFamily="Microsoft YaHei UI Light" FontSize="18" ></Label>
-                        <Image Source="1@2x.png" Height="41" Margin="5,0,106,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
+                        <Label Content="Today 今日天气    实时天气" Background="White" Foreground="White" Height="31" Margin="0,3,0,6" FontFamily="Microsoft YaHei UI Light" FontSize="18" ></Label>
+                        <Image Source="1@2x.png" Height="41" Margin="3,0,157,0" RenderTransformOrigin="1.191,0.517" x:Name="day">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -118,7 +96,7 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Image Source="1@2x.png"  Height="42" Margin="104,-42,10,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
+                        <Image Source="1@2x.png"  Height="42" Margin="80,-42,84,0" RenderTransformOrigin="1.191,0.517" x:Name="night">
                             <Image.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -128,8 +106,19 @@
                                 </TransformGroup>
                             </Image.RenderTransform>
                         </Image>
-                        <Label x:Name="high" Content="N/A" Margin="15,-3,110,0" Background="White" Foreground="White" Height="40" FontSize="22"/>
-                        <Label x:Name="low" Content="N/A" Margin="108,-39,10,0" Background="White" Foreground="White" Height="39" FontSize="22"/>
+                        <Image Source="1@2x.png"  Height="42" Margin="154,-42,7,0" RenderTransformOrigin="1.191,0.517" x:Name="_1h">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-0.637"/>
+                                    <TranslateTransform X="0.005" Y="-0.503"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label x:Name="high" Content="N/A" Margin="15,-3,110,0" Background="White" Foreground="White" Height="41" FontSize="24"/>
+                        <Label x:Name="low" Content="N/A" Margin="89,-39,76,0" Background="White" Foreground="White" Height="38" FontSize="24"/>
+                        <Label x:Name="_1hc" Content="N/A" Margin="160,-41,8,0" Background="White" Foreground="White" Height="40" FontSize="24"/>
                     </StackPanel>
                 </fw:AcrylicPanel>
             </materialDesign:Card>

@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -19,75 +20,78 @@ namespace XClock
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    
+
     public partial class MainWindow : Window
     {
-        public class Location1h
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            public string id { get; set; }
-            /// <summary>
-            /// 丽水
-            /// </summary>
-            public string name { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public string country { get; set; }
-            /// <summary>
-            /// 丽水,丽水,浙江,中国
-            /// </summary>
-            public string path { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public string timezone { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public string timezone_offset { get; set; }
-        }
+        public class hweather{
+            public class Location
+            {
+                /// <summary>
+                /// 
+                /// </summary>
+                public string id { get; set; }
+                /// <summary>
+                /// 丽水
+                /// </summary>
+                public string name { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public string country { get; set; }
+                /// <summary>
+                /// 丽水,丽水,浙江,中国
+                /// </summary>
+                public string path { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public string timezone { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public string timezone_offset { get; set; }
+            }
 
-        public class Now
-        {
-            /// <summary>
-            /// 阴
-            /// </summary>
-            public string text { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public string code { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public string temperature { get; set; }
-        }
+            public class Now
+            {
+                /// <summary>
+                /// 阴
+                /// </summary>
+                public string text { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public string code { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public string temperature { get; set; }
+            }
 
-        public class Results1h
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            public Location location1h { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public Now now { get; set; }
-            /// <summary>
-            /// 
-            /// </summary>
-            public string last_update { get; set; }
-        }
+            public class Results
+            {
+                /// <summary>
+                /// 
+                /// </summary>
+                public Location location { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public Now now { get; set; }
+                /// <summary>
+                /// 
+                /// </summary>
+                public string last_update { get; set; }
+            }
 
-        public class Root2
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            public List<Results> results1h { get; set; }
+            public class Root
+            {
+                /// <summary>
+                /// 
+                /// </summary>
+                public List<Results> results { get; set; }
+            }
+
         }
 
         public class Location
@@ -243,11 +247,54 @@ namespace XClock
             for (int i = 1; i <= a; i++) if (times[i] == DateTime.Now.ToLongTimeString().ToString()) WindowState = WindowState.Normal;
             for (int i = 1; i <= b; i++) if (timeclose[i] == DateTime.Now.ToLongTimeString().ToString()) WindowState = WindowState.Minimized;
             for (int i = 1; i <= c; i++) if (timecmd[i] == DateTime.Now.ToLongTimeString().ToString()) doingcmd(cmd[i]);
+
+            WindowInteropHelper mianHanel = new WindowInteropHelper(this);
+            WindowInteropHelper vedioWin = new WindowInteropHelper(this);
+            WindowInteropHelper FrameWin = new WindowInteropHelper(this);
+            FrameWin.Owner = IntPtr.Zero;
+            mianHanel.Owner = vedioWin.Handle;
+            vedioWin.Owner = FrameWin.Handle;
             this.Topmost = true;
+        }
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                WebClient MyWebClient = new WebClient();
+                MyWebClient.Credentials = CredentialCache.DefaultCredentials;
+                Byte[] pageData = MyWebClient.DownloadData("https://api.seniverse.com/v3/weather/now.json?key=SsqE832RAq3z3EfAE&location=lishui&language=zh-Hans");
+                weather = Encoding.UTF8.GetString(pageData);
+
+            }
+            catch { };
+           hweather.Root rt2 = JsonConvert.DeserializeObject<hweather.Root>(weather);
+            string ab = " ";
+            for (int i = 0; i < rt2.results.Count; i++)
+            {
+                
+                    if (i == 0)
+                    {
+                        ab = rt2.results[i].now.code;
+                    }
+                
+            }
+
+            BitmapImage ImageSource2 = new BitmapImage(new Uri("/" + ab + "@2x.png", UriKind.Relative));
+            _1h.Source = ImageSource2;
+            _1hc.Content = rt2.results[0].now.temperature + "℃";
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            string[] text = new string[4];
+            text[0] = "XBB2";
+            text[1] = "XINGXING";
+            text[2] = "LIUSHU";
+            text[3] = "Xcube";
+            Random ra = new Random();
+            TimeLable.Content = text[ra.Next(0,3)];
+            string weather1h=" ";
             
             weathercardwindow.SetBinding(AcrylicPanel.TargetProperty, new Binding() { ElementName = "MainImage" });
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "timeopen.txt"))
@@ -320,23 +367,42 @@ namespace XClock
                 WebClient MyWebClient = new WebClient();
                 MyWebClient.Credentials = CredentialCache.DefaultCredentials;
                 Byte[] pageData = MyWebClient.DownloadData("https://api.seniverse.com/v3/weather/now.json?key=SsqE832RAq3z3EfAE&location=lishui&language=zh-Hans");
-                weather = Encoding.UTF8.GetString(pageData);
+                weather1h = Encoding.UTF8.GetString(pageData);
 
             }
             catch { };
-            Root2 rt2 = JsonConvert.DeserializeObject<Root2>(weather);
+            hweather.Root rt2 = JsonConvert.DeserializeObject<hweather.Root>(weather1h);
 
             BitmapImage ImageSource = new BitmapImage(new Uri("/" +weather_day + "@2x.png", UriKind.Relative));
             day.Source = ImageSource;
             BitmapImage ImageSource1 = new BitmapImage(new Uri("/" +weather_night + "@2x.png", UriKind.Relative));
             night.Source = ImageSource1;
             high.Content = weather_high + "℃";
-            low.Content = weather_low + "℃"; 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer1_Tick;
-            timer.Start();
+            low.Content = weather_low + "℃";
+            string ab = " ";
+            for (int i = 0; i < rt2.results.Count; i++)
+            {
 
+                    if (i == 0)
+                    {
+                        ab = rt2.results[i].now.code;
+                    }
+                
+            }
+            
+            BitmapImage ImageSource2 = new BitmapImage(new Uri("/" + ab + "@2x.png", UriKind.Relative));
+            _1h.Source = ImageSource2;
+           _1hc.Content = rt2.results[0].now.temperature + "℃";
+           DispatcherTimer timer = new DispatcherTimer();
+           timer.Interval = TimeSpan.FromSeconds(1);
+           timer.Tick += timer1_Tick;
+           timer.Start();
+            DispatcherTimer timer2 = new DispatcherTimer();
+            timer2.Interval = TimeSpan.FromHours(1);
+            timer2.Tick += timer2_Tick;
+            timer2.Start();
+          
         }
     }
 }
+                                                                                            
