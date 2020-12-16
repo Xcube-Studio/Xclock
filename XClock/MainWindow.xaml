@@ -10,7 +10,7 @@
         ResizeMode="CanMinimize"
         AllowsTransparency="True"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        Title="MainWindow" WindowStartupLocation="Manual" Background="Transparent" materialDesign:ShadowAssist.ShadowDepth="Depth4" Height="228" Width="674" Loaded="Window_Loaded" Left="600" Top="500">
+        Title="MainWindow" WindowStartupLocation="Manual" Background="Transparent" materialDesign:ShadowAssist.ShadowDepth="Depth4" Height="228" Width="674" Loaded="Window_Loaded" Left="600" Top="500" MouseMove="TitleBar_MouseMove">
     <Window.Resources>
         <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#6ec6ff"/>
         <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#0069c0"/>
