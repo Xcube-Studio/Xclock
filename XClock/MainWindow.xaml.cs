@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Data;
@@ -20,9 +21,17 @@ namespace XClock
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-
+    
     public partial class MainWindow : Window
     {
+        [DllImport("user32.dll")]
+        private static extern int SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int Width, int Height, int flags);
+        /// <summary>
+        /// 得到当前活动的窗口
+        /// </summary>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        private static extern System.IntPtr GetForegroundWindow();
         int buttom = 0;
         public class hweather{
             public class Location
@@ -240,7 +249,7 @@ namespace XClock
         private void Button_Mini(object sender, RoutedEventArgs e)
         {
             buttom++;
-            if (buttom == 3) WindowState = WindowState.Minimized;
+            if (buttom == 3) { WindowState = WindowState.Minimized; buttom = 0; }
             GC.Collect();
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -258,7 +267,13 @@ namespace XClock
             vedioWin.Owner = FrameWin.Handle;
             this.Topmost = true;
         }
-        private void timer2_Tick(object sender, EventArgs e)
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            IntPtr handle = new WindowInteropHelper(this).Handle;
+            SetWindowPos(handle, -1, 0, 0, 0, 0, 1 | 2);
+        }
+
+            private void timer2_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -399,11 +414,17 @@ namespace XClock
            timer.Interval = TimeSpan.FromSeconds(1);
            timer.Tick += timer1_Tick;
            timer.Start();
+            IntPtr handle = new WindowInteropHelper(this).Handle;
+
+            SetWindowPos(handle, -1, 0, 0, 0, 0, 1 | 2);
             DispatcherTimer timer2 = new DispatcherTimer();
             timer2.Interval = TimeSpan.FromHours(1);
             timer2.Tick += timer2_Tick;
             timer2.Start();
-          
+            DispatcherTimer timer3 = new DispatcherTimer();
+            timer3.Interval = TimeSpan.FromMilliseconds(17);
+            timer3.Tick += timer3_Tick;
+            timer3.Start();
         }
     }
 }
