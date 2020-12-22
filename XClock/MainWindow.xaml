@@ -63,7 +63,7 @@
                     </TransformGroup>
                 </materialDesign:Card.RenderTransform>
                 <materialDesign:Card.Background>
-                    <ImageBrush ImageSource="/back.jpg"></ImageBrush>
+                    <ImageBrush ImageSource="https://api.dujin.org/bing/1920.php"></ImageBrush>
                 </materialDesign:Card.Background>
                 <StackPanel>
                     <Label Content="XB:B2:XX" x:Name="TimeLable" FontFamily="Microsoft YaHei UI Light" Foreground="#FFFCFCFC" Margin="41,-12,231,30" FontSize="85"></Label>
