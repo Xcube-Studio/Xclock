@@ -14,3 +14,8 @@ C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.pdb
 C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.exe.config
 C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.exe
 C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.pdb
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.TrustInfo.xml
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.exe.manifest
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\bin\Release\XClock.application
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.exe.manifest
+C:\Users\Xingxing520\Documents\程序项目\XClock\XClock\obj\Release\XClock.application
