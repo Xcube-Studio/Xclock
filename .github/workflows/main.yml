@@ -33,16 +33,16 @@ jobs:
       uses: darenm/Setup-VSTest@v1
     
     - name: Restore Solution
-      run: nuget restore ./Xclock/Xclock.sln
+      run: nuget restore ./XClock/XClock.sln
       
     - name: Build Solution
       run: |
-          msbuild.exe ./Xclock/Xclock.sln /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe ./XClock/XClock.sln /p:platform="Any CPU" /p:configuration="Release"
     - name: Zip
       uses: vimtor/action-zip@v1
       with:
-        files: ./Xclock/bin/Release/Xclock.exe
-        dest: Xclock.zip
+        files: ./XClock/bin/Release/XClock.exe
+        dest: XClock.zip
         
     - name: Create Pre-release
       id: create_release
@@ -50,7 +50,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        release_name: XHomework Pre/${{ github.sha }}
+        release_name: XClock Pre/${{ github.sha }}
         tag_name: PreRelease
         prerelease: true
         draft: false
@@ -63,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Xclock.zip
-          asset_name: Xclock ${{ github.sha }}.zip
+          asset_path: XClock.zip
+          asset_name: XClock ${{ github.sha }}.zip
           asset_content_type: application/zip
     
